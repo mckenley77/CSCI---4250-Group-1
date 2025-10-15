@@ -1,4 +1,5 @@
 using StudentTracker.Components;
+using StudentTracker.Services;
 
 namespace StudentTracker
 {
@@ -11,6 +12,8 @@ namespace StudentTracker
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
+
+            builder.Services.AddScoped<IAPIService, APIService>();
 
             var app = builder.Build();
 

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\StudentTracker\\StudentTracker.csproj",
+      "projectUniqueName": "C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\StudentTracker.csproj",
       "projectName": "StudentTracker",
-      "projectPath": "C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\StudentTracker\\StudentTracker.csproj",
+      "projectPath": "C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\StudentTracker.csproj",
       "packagesPath": "C:\\Users\\princ\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\StudentTracker\\obj\\",
+      "outputPath": "C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
