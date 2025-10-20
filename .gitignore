@@ -1,5 +1,5 @@
-source/.vs
-source/bin
-souce/obj
+/source/.vs
+/source/bin
+/souce/obj
 
 *.db
