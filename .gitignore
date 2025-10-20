@@ -1,3 +1,5 @@
-/*/.vs
-/*/bin
-/*/obj
+source/.vs
+source/bin
+souce/obj
+
+*.db
