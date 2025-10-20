@@ -1,5 +1,4 @@
-/source/.vs
-/source/bin
-/source/obj
-
+bin/
+obj/
+.vs/
 *.db
