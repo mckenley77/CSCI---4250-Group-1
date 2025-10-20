@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\StudentTracker.bundle.scp.css",
+      "PackagePath": "staticwebassets\\StudentTracker.r4m7h03wqx.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.StudentTracker.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.StudentTracker.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.StudentTracker.props",
+      "PackagePath": "build\\StudentTracker.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.StudentTracker.props",
+      "PackagePath": "buildMultiTargeting\\StudentTracker.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.StudentTracker.props",
+      "PackagePath": "buildTransitive\\StudentTracker.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

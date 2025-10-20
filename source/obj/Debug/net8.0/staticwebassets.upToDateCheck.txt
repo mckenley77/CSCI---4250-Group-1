@@ -1,0 +1,7 @@
+wwwroot\app.css
+<<<<<<< HEAD:StudentTracker/obj/Debug/net8.0/staticwebassets.upToDateCheck.txt
+=======
+wwwroot\bootstrap\bootstrap.min.css
+wwwroot\bootstrap\bootstrap.min.css.map
+wwwroot\favicon.png
+>>>>>>> 309c9251cc72dbd2d99dab439e3609906faadf31:source/obj/Debug/net8.0/staticwebassets.upToDateCheck.txt

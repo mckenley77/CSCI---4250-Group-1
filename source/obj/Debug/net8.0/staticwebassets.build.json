@@ -1,0 +1,335 @@
+<<<<<<< HEAD:StudentTracker/obj/Debug/net8.0/staticwebassets.build.json
+{
+  "Version": 1,
+  "Hash": "iAKqlk6cs7ZFW2FCtompEZwvVttiGAqkX6ZIRmxvMQQ=",
+  "Source": "StudentTracker",
+  "BasePath": "_content/StudentTracker",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "StudentTracker\\wwwroot",
+      "Source": "StudentTracker",
+      "ContentRoot": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\wwwroot\\",
+      "BasePath": "_content/StudentTracker",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\obj\\Debug\\net8.0\\scopedcss\\bundle\\StudentTracker.styles.css",
+      "SourceId": "StudentTracker",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/StudentTracker",
+      "RelativePath": "StudentTracker#[.{fingerprint}]?.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "Fingerprint": "r4m7h03wqx",
+      "Integrity": "y0zcY2w89RlTmQ2ho9NzBu1opyl5dFtSPr3pXMQ/TOU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\obj\\Debug\\net8.0\\scopedcss\\bundle\\StudentTracker.styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\StudentTracker.bundle.scp.css",
+      "SourceId": "StudentTracker",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/StudentTracker",
+      "RelativePath": "StudentTracker#[.{fingerprint}]!.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "Fingerprint": "r4m7h03wqx",
+      "Integrity": "y0zcY2w89RlTmQ2ho9NzBu1opyl5dFtSPr3pXMQ/TOU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\StudentTracker.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\wwwroot\\app.css",
+      "SourceId": "StudentTracker",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\wwwroot\\",
+      "BasePath": "_content/StudentTracker",
+      "RelativePath": "app#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9tsjre4pz5",
+      "Integrity": "Y3QRrYDjsQ+Bj4noKNSCcSRxgRtgAn0QL1o5m5BNepk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.css"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "app.9tsjre4pz5.css",
+      "AssetFile": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\wwwroot\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2154"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Y3QRrYDjsQ+Bj4noKNSCcSRxgRtgAn0QL1o5m5BNepk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 15 Oct 2025 17:17:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9tsjre4pz5"
+        },
+        {
+          "Name": "label",
+          "Value": "app.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Y3QRrYDjsQ+Bj4noKNSCcSRxgRtgAn0QL1o5m5BNepk="
+        }
+      ]
+    },
+    {
+      "Route": "app.css",
+      "AssetFile": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\wwwroot\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2154"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Y3QRrYDjsQ+Bj4noKNSCcSRxgRtgAn0QL1o5m5BNepk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 15 Oct 2025 17:17:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Y3QRrYDjsQ+Bj4noKNSCcSRxgRtgAn0QL1o5m5BNepk="
+        }
+      ]
+    },
+    {
+      "Route": "StudentTracker.bundle.scp.css",
+      "AssetFile": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\StudentTracker.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y0zcY2w89RlTmQ2ho9NzBu1opyl5dFtSPr3pXMQ/TOU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 15 Oct 2025 17:49:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-y0zcY2w89RlTmQ2ho9NzBu1opyl5dFtSPr3pXMQ/TOU="
+        }
+      ]
+    },
+    {
+      "Route": "StudentTracker.r4m7h03wqx.bundle.scp.css",
+      "AssetFile": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\StudentTracker.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y0zcY2w89RlTmQ2ho9NzBu1opyl5dFtSPr3pXMQ/TOU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 15 Oct 2025 17:49:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r4m7h03wqx"
+        },
+        {
+          "Name": "label",
+          "Value": "StudentTracker.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-y0zcY2w89RlTmQ2ho9NzBu1opyl5dFtSPr3pXMQ/TOU="
+        }
+      ]
+    },
+    {
+      "Route": "StudentTracker.r4m7h03wqx.styles.css",
+      "AssetFile": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\obj\\Debug\\net8.0\\scopedcss\\bundle\\StudentTracker.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y0zcY2w89RlTmQ2ho9NzBu1opyl5dFtSPr3pXMQ/TOU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 15 Oct 2025 17:49:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r4m7h03wqx"
+        },
+        {
+          "Name": "label",
+          "Value": "StudentTracker.styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-y0zcY2w89RlTmQ2ho9NzBu1opyl5dFtSPr3pXMQ/TOU="
+        }
+      ]
+    },
+    {
+      "Route": "StudentTracker.styles.css",
+      "AssetFile": "C:\\Users\\smcke\\OneDrive\\Documents\\CSCI---4250-Group-1\\StudentTracker\\obj\\Debug\\net8.0\\scopedcss\\bundle\\StudentTracker.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "505"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y0zcY2w89RlTmQ2ho9NzBu1opyl5dFtSPr3pXMQ/TOU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 15 Oct 2025 17:49:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-y0zcY2w89RlTmQ2ho9NzBu1opyl5dFtSPr3pXMQ/TOU="
+        }
+      ]
+    }
+  ]
+}
+=======
+{"Version":1,"Hash":"6fW2Po8v6jHOlefNnnqE4B8wp5sjydo62ite5mD0wMo=","Source":"StudentTracker","BasePath":"_content/StudentTracker","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[{"Name":"StudentTracker\\wwwroot","Source":"StudentTracker","ContentRoot":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\","BasePath":"_content/StudentTracker","Pattern":"**"}],"Assets":[{"Identity":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\obj\\Debug\\net8.0\\scopedcss\\bundle\\StudentTracker.styles.css","SourceId":"StudentTracker","SourceType":"Computed","ContentRoot":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\obj\\Debug\\net8.0\\scopedcss\\bundle\\","BasePath":"_content/StudentTracker","RelativePath":"StudentTracker#[.{fingerprint}]?.styles.css","AssetKind":"All","AssetMode":"CurrentProject","AssetRole":"Primary","AssetMergeBehavior":"","AssetMergeSource":"","RelatedAsset":"","AssetTraitName":"ScopedCss","AssetTraitValue":"ApplicationBundle","Fingerprint":"nzb3iad5tx","Integrity":"cykm3x8AOigaWw6A+DxRW7Xfi/ye04P+cVYNZggW/oY=","CopyToOutputDirectory":"Never","CopyToPublishDirectory":"PreserveNewest","OriginalItemSpec":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\obj\\Debug\\net8.0\\scopedcss\\bundle\\StudentTracker.styles.css","FileLength":5911,"LastWriteTime":"2025-10-15T17:27:31+00:00"},{"Identity":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\StudentTracker.bundle.scp.css","SourceId":"StudentTracker","SourceType":"Computed","ContentRoot":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\","BasePath":"_content/StudentTracker","RelativePath":"StudentTracker#[.{fingerprint}]!.bundle.scp.css","AssetKind":"All","AssetMode":"Reference","AssetRole":"Primary","AssetMergeBehavior":"","AssetMergeSource":"","RelatedAsset":"","AssetTraitName":"ScopedCss","AssetTraitValue":"ProjectBundle","Fingerprint":"nzb3iad5tx","Integrity":"cykm3x8AOigaWw6A+DxRW7Xfi/ye04P+cVYNZggW/oY=","CopyToOutputDirectory":"Never","CopyToPublishDirectory":"PreserveNewest","OriginalItemSpec":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\StudentTracker.bundle.scp.css","FileLength":5911,"LastWriteTime":"2025-10-15T17:27:31+00:00"},{"Identity":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\app.css","SourceId":"StudentTracker","SourceType":"Discovered","ContentRoot":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\","BasePath":"_content/StudentTracker","RelativePath":"app#[.{fingerprint}]?.css","AssetKind":"All","AssetMode":"All","AssetRole":"Primary","AssetMergeBehavior":"","AssetMergeSource":"","RelatedAsset":"","AssetTraitName":"","AssetTraitValue":"","Fingerprint":"da95v2qkru","Integrity":"u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=","CopyToOutputDirectory":"Never","CopyToPublishDirectory":"PreserveNewest","OriginalItemSpec":"wwwroot\\app.css","FileLength":2591,"LastWriteTime":"2025-10-15T17:21:45+00:00"},{"Identity":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\bootstrap\\bootstrap.min.css","SourceId":"StudentTracker","SourceType":"Discovered","ContentRoot":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\","BasePath":"_content/StudentTracker","RelativePath":"bootstrap/bootstrap.min#[.{fingerprint}]?.css","AssetKind":"All","AssetMode":"All","AssetRole":"Primary","AssetMergeBehavior":"","AssetMergeSource":"","RelatedAsset":"","AssetTraitName":"","AssetTraitValue":"","Fingerprint":"bpk8xqwxhs","Integrity":"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=","CopyToOutputDirectory":"Never","CopyToPublishDirectory":"PreserveNewest","OriginalItemSpec":"wwwroot\\bootstrap\\bootstrap.min.css","FileLength":162720,"LastWriteTime":"2025-10-15T17:21:46+00:00"},{"Identity":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\bootstrap\\bootstrap.min.css.map","SourceId":"StudentTracker","SourceType":"Discovered","ContentRoot":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\","BasePath":"_content/StudentTracker","RelativePath":"bootstrap/bootstrap.min.css#[.{fingerprint}]?.map","AssetKind":"All","AssetMode":"All","AssetRole":"Primary","AssetMergeBehavior":"","AssetMergeSource":"","RelatedAsset":"","AssetTraitName":"","AssetTraitValue":"","Fingerprint":"8inm30yfxf","Integrity":"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=","CopyToOutputDirectory":"Never","CopyToPublishDirectory":"PreserveNewest","OriginalItemSpec":"wwwroot\\bootstrap\\bootstrap.min.css.map","FileLength":449111,"LastWriteTime":"2025-10-15T17:21:46+00:00"},{"Identity":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\favicon.png","SourceId":"StudentTracker","SourceType":"Discovered","ContentRoot":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\","BasePath":"_content/StudentTracker","RelativePath":"favicon#[.{fingerprint}]?.png","AssetKind":"All","AssetMode":"All","AssetRole":"Primary","AssetMergeBehavior":"","AssetMergeSource":"","RelatedAsset":"","AssetTraitName":"","AssetTraitValue":"","Fingerprint":"ifv42okdf2","Integrity":"4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg=","CopyToOutputDirectory":"Never","CopyToPublishDirectory":"PreserveNewest","OriginalItemSpec":"wwwroot\\favicon.png","FileLength":1148,"LastWriteTime":"2025-10-15T17:21:45+00:00"}],"Endpoints":[{"Route":"app.css","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\app.css","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"2591"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\"u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:21:45 GMT"},{"Name":"Cache-Control","Value":"no-cache"}],"EndpointProperties":[{"Name":"integrity","Value":"sha256-u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE="}]},{"Route":"app.da95v2qkru.css","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\app.css","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"2591"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\"u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:21:45 GMT"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"}],"EndpointProperties":[{"Name":"fingerprint","Value":"da95v2qkru"},{"Name":"label","Value":"app.css"},{"Name":"integrity","Value":"sha256-u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE="}]},{"Route":"bootstrap/bootstrap.min.bpk8xqwxhs.css","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\bootstrap\\bootstrap.min.css","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"162720"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:21:46 GMT"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"}],"EndpointProperties":[{"Name":"fingerprint","Value":"bpk8xqwxhs"},{"Name":"label","Value":"bootstrap/bootstrap.min.css"},{"Name":"integrity","Value":"sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="}]},{"Route":"bootstrap/bootstrap.min.css","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\bootstrap\\bootstrap.min.css","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"162720"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:21:46 GMT"},{"Name":"Cache-Control","Value":"no-cache"}],"EndpointProperties":[{"Name":"integrity","Value":"sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="}]},{"Route":"bootstrap/bootstrap.min.css.8inm30yfxf.map","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\bootstrap\\bootstrap.min.css.map","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"449111"},{"Name":"Content-Type","Value":"text/plain"},{"Name":"ETag","Value":"\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:21:46 GMT"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"}],"EndpointProperties":[{"Name":"fingerprint","Value":"8inm30yfxf"},{"Name":"label","Value":"bootstrap/bootstrap.min.css.map"},{"Name":"integrity","Value":"sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="}]},{"Route":"bootstrap/bootstrap.min.css.map","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\bootstrap\\bootstrap.min.css.map","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"449111"},{"Name":"Content-Type","Value":"text/plain"},{"Name":"ETag","Value":"\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:21:46 GMT"},{"Name":"Cache-Control","Value":"no-cache"}],"EndpointProperties":[{"Name":"integrity","Value":"sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="}]},{"Route":"favicon.ifv42okdf2.png","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\favicon.png","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"1148"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\"4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:21:45 GMT"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"}],"EndpointProperties":[{"Name":"fingerprint","Value":"ifv42okdf2"},{"Name":"label","Value":"favicon.png"},{"Name":"integrity","Value":"sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg="}]},{"Route":"favicon.png","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\wwwroot\\favicon.png","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"1148"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\"4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:21:45 GMT"},{"Name":"Cache-Control","Value":"no-cache"}],"EndpointProperties":[{"Name":"integrity","Value":"sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg="}]},{"Route":"StudentTracker.bundle.scp.css","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\StudentTracker.bundle.scp.css","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"5911"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\"cykm3x8AOigaWw6A+DxRW7Xfi/ye04P+cVYNZggW/oY=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:27:31 GMT"},{"Name":"Cache-Control","Value":"no-cache"}],"EndpointProperties":[{"Name":"integrity","Value":"sha256-cykm3x8AOigaWw6A+DxRW7Xfi/ye04P+cVYNZggW/oY="}]},{"Route":"StudentTracker.nzb3iad5tx.bundle.scp.css","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\StudentTracker.bundle.scp.css","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"5911"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\"cykm3x8AOigaWw6A+DxRW7Xfi/ye04P+cVYNZggW/oY=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:27:31 GMT"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"}],"EndpointProperties":[{"Name":"fingerprint","Value":"nzb3iad5tx"},{"Name":"label","Value":"StudentTracker.bundle.scp.css"},{"Name":"integrity","Value":"sha256-cykm3x8AOigaWw6A+DxRW7Xfi/ye04P+cVYNZggW/oY="}]},{"Route":"StudentTracker.nzb3iad5tx.styles.css","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\obj\\Debug\\net8.0\\scopedcss\\bundle\\StudentTracker.styles.css","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"5911"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\"cykm3x8AOigaWw6A+DxRW7Xfi/ye04P+cVYNZggW/oY=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:27:31 GMT"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"}],"EndpointProperties":[{"Name":"fingerprint","Value":"nzb3iad5tx"},{"Name":"label","Value":"StudentTracker.styles.css"},{"Name":"integrity","Value":"sha256-cykm3x8AOigaWw6A+DxRW7Xfi/ye04P+cVYNZggW/oY="}]},{"Route":"StudentTracker.styles.css","AssetFile":"C:\\Users\\princ\\Documents\\python\\CSCI4250-Group-1\\source\\obj\\Debug\\net8.0\\scopedcss\\bundle\\StudentTracker.styles.css","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"5911"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\"cykm3x8AOigaWw6A+DxRW7Xfi/ye04P+cVYNZggW/oY=\""},{"Name":"Last-Modified","Value":"Wed, 15 Oct 2025 17:27:31 GMT"},{"Name":"Cache-Control","Value":"no-cache"}],"EndpointProperties":[{"Name":"integrity","Value":"sha256-cykm3x8AOigaWw6A+DxRW7Xfi/ye04P+cVYNZggW/oY="}]}]}
+>>>>>>> 309c9251cc72dbd2d99dab439e3609906faadf31:source/obj/Debug/net8.0/staticwebassets.build.json
