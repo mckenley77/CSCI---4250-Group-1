@@ -6,7 +6,7 @@
 
         public string Major { get; set; } = string.Empty;
 
-        public DateTime EnrollmentDate { get; set; }
+        public DateOnly EnrollmentDate { get; set; }
 
         public bool LocationSharingEnabled { get; set; }
 
