@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.encoders import jsonable_encoder
-from api_models import UserModel
-from db_models import Base, User
+from api_models import UserModel, StudentModel, CourseModel, InstructorModel
+from db_models import Base, User, Student, Course, Instructor
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -22,6 +22,8 @@ app = FastAPI()
 
 #API endpoints below
 
+#users, in progress
+
 @app.get("/users/{username}/{password}")
 async def GetUserAsync(username : str, password : str):
   userToLogin = session.query(User).filter(User.username == username and User.password == password).first()
@@ -40,6 +42,31 @@ async def CreateUserAsync(user : UserModel):
     password=user.password,
     firstname=user.firstname,
     lastname=user.lastname
+  ))
+  session.commit()
+  return "success"
+
+#course
+
+@app.get("/course/{id}")
+async def GetCourseAsync(id : int):
+  courseGet = session.query(Course).filter(Course.id == id).first()
+  return courseGet
+
+@app.get("/course/")
+async def GetCoursesAsync():
+  return session.query(Course).all()
+
+@app.post("/course/")
+async def CreateUserAsync(course : CourseModel):
+  idNum = session.query(Course).count()
+  session.add(Course(
+    id=idNum,
+    coursename = course.coursename,
+    coursecode = course.coursecode,
+    coursedescription = course.coursedescription,
+    startdate = course.startdate,
+    enddate = course.enddate
   ))
   session.commit()
   return "success"
