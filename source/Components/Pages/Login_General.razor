@@ -1,42 +1,69 @@
 ﻿@page "/login"
-<h3>Login_General</h3>
+@using Microsoft.AspNetCore.Components.Web
+@rendermode InteractiveServer
 
 <h3>Login</h3>
 
-@if (!string.IsNullOrEmpty(errorMessage))
+<div>
+    <label for="username">Username:</label>
+    <input id="username" @bind="Username" @onkeydown="HandleKeyPress" />
+</div>
+
+<div>
+    <label for="password">Password:</label>
+    <input id="password" type="password" @bind="Password" @onkeydown="HandleKeyPress" />
+</div>
+
+<button @onclick="LoginClicked">Login</button>
+
+@if (ShowError)
 {
-    <p style="color: red;">@errorMessage</p>
+    <div class="text-danger mt-2">
+        Login failed. Please check your username and password.
+    </div>
+}
+@if (IsLoggedIn)
+{
+    <div class="text-success mt-2">
+        Welcome, @Username! You are logged in.
+    </div>
 }
 
-<p>
-    <label>Username: </label>
-    <input @bind="username" />
-</p>
-
-<p>
-    <label>Password: </label>
-    <input type="password" @bind="password" />
-</p>
-
-<p>
-    <button @onclick="Login">Login</button>
-</p>
-
 @code {
-    private string username;
-    private string password;
-    private string errorMessage;
+    private string Username { get; set; }
+    private string Password { get; set; }
+    private bool ShowError { get; set; } = false;
+    private bool IsLoggedIn { get; set; } = false;
 
-    private void Login()
+    private async Task LoginClicked()
     {
-        if (username == "admin" && password == "password")
+
+        try
         {
-            errorMessage = "";
-            Console.WriteLine("Login successful!");
+            if (Username == "username" && Password == "password")
+            {
+                IsLoggedIn = true;
+                ShowError = false;
+            }
+            else
+            {
+                ShowError = true;
+                IsLoggedIn = false;
+            }
+
+            await Task.CompletedTask;
         }
-        else
+        catch (HttpRequestException ex)
         {
-            errorMessage = "Invalid username or password.";
+            ShowError = true;
+        }
+    }
+
+    private async Task HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await LoginClicked();
         }
     }
 }
