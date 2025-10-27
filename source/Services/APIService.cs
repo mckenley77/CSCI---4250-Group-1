@@ -36,9 +36,9 @@ namespace StudentTracker.Services
             return await response.Content.ReadAsStringAsync();
         }
 
-        public async Task<User> GetUserAsync(string username, string password)
+        public async Task<List<User>> GetUserAsync(string username, string password)
         {
-            var response = await _httpClient.GetFromJsonAsync<User>($"users/{username}/{password}");
+            var response = await _httpClient.GetFromJsonAsync<List<User>>($"users/{username}/{password}");
             return response;
         }
     }

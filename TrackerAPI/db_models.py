@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, ForeignKeyConstraint, Date, DateTime, Table
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Date, DateTime, Float
 from typing import List
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
@@ -18,18 +18,21 @@ class User(Base):
   
 class StudentCourse(Base):
   __tablename__="student_course_assn"
+  
   student_id: Mapped[int] = mapped_column(ForeignKey("student.id"), primary_key=True)
   course_id: Mapped[int] = mapped_column(ForeignKey("course.id"), primary_key=True)
   course: Mapped["Course"] = relationship()
   
 class InstructorCourse(Base):
   __tablename__="instructor_course_assn"
+  
   instructor_id: Mapped[int] = mapped_column(ForeignKey("instructor.id"), primary_key=True)
   course_id: Mapped[int] = mapped_column(ForeignKey("course.id"), primary_key=True)
   course: Mapped["Course"] = relationship()
 
 class Course(Base):
   __tablename__="course"
+  
   id = Column(Integer, primary_key=True, autoincrement=True)
   coursename = Column(String, nullable=False)
   coursecode = Column(String, nullable=False)
@@ -40,6 +43,7 @@ class Course(Base):
 class Student(User):
   __tablename__="student"
   __mapper_args__ = {'polymorphic_identity': 'student'}
+  
   id: Mapped[int] = mapped_column(ForeignKey("user.id"), primary_key=True, autoincrement=True, use_existing_column=True)
   major = Column(String)
   enrollmentdate = Column(Date)
@@ -50,9 +54,52 @@ class Student(User):
 class Instructor(User):
   __tablename__="instructor"
   __mapper_args__ = {'polymorphic_identity': 'instructor'}
+  
   id: Mapped[int] = mapped_column(ForeignKey("user.id"), primary_key=True, autoincrement=True, use_existing_column=True)
   department = Column(String)
   taughtcourses: Mapped[List[InstructorCourse]] = relationship()
 
+class Message(Base):
+  __tablename__="message"
+  
+  id = Column(Integer, primary_key=True, autoincrement=True)
+  senderid = Column(Integer, ForeignKey("user.id"))
+  recipienttype = Column(String)
+  messagecontent = Column(String)
+  sentat = Column(DateTime)
+  isread = Column(Boolean)
+  
+class Broadcast(Base):
+  __tablename__ = "broadcast"
+  
+  id = Column(Integer, primary_key=True, autoincrement=True)
+  instructorid = Column(Integer, ForeignKey("instructor.id"))
+  courseid = Column(Integer, ForeignKey("course.id"))
+  message = Column(String)
+  sentat = Column(Date)
+  recipientcount = Column(Date)
+  
+class Notification(Base):
+  __tablename__ = "notification"
+  
+  id = Column(Integer, primary_key=True, autoincrement=True)
+  userid = Column(Integer, ForeignKey("user.id"))
+  type = Column(String)
+  title = Column(String)
+  message = Column(String)
+  isread = Column(Boolean)
+  createdat = Column(DateTime)
+  
+class Location(Base):
+  __tablename__ = "location"
+
+  id = Column(Integer, primary_key=True, autoincrement=True)
+  userid = Column(Integer, ForeignKey("user.id"))
+  latitude = Column(Float)
+  longitude = Column(Float)
+  address = Column(String)
+  timestamp = Column(DateTime)
+  accuracy = Column(Float)
+  
 
 
