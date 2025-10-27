@@ -14,7 +14,7 @@
     <input id="password" type="password" @bind="Password" @onkeydown="HandleKeyPress" />
 </div>
 
-<button @onclick="LoginClicked">Login</button>
+<button @onclick="LoginClicked" disabled="@IsLoggedIn">Login</button>
 
 @if (ShowError)
 {
@@ -22,11 +22,13 @@
         Login failed. Please check your username and password.
     </div>
 }
+
 @if (IsLoggedIn)
 {
     <div class="text-success mt-2">
         Welcome, @Username! You are logged in.
     </div>
+    <button class="btn btn-secondary mt-2" @onclick="LogoutClicked">Logout</button>
 }
 
 @code {
@@ -37,7 +39,6 @@
 
     private async Task LoginClicked()
     {
-
         try
         {
             if (Username == "username" && Password == "password")
@@ -53,10 +54,21 @@
 
             await Task.CompletedTask;
         }
-        catch (HttpRequestException ex)
+        catch (HttpRequestException)
         {
             ShowError = true;
         }
+    }
+
+    private async Task LogoutClicked()
+    {
+        // Reset login state
+        IsLoggedIn = false;
+        Username = string.Empty;
+        Password = string.Empty;
+        ShowError = false;
+
+        await Task.CompletedTask;
     }
 
     private async Task HandleKeyPress(KeyboardEventArgs e)
