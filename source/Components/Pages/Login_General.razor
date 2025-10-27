@@ -1,5 +1,9 @@
 ﻿@page "/login"
 @using Microsoft.AspNetCore.Components.Web
+@using StudentTracker.Services
+@using StudentTracker.Models
+@inject NavigationManager Nav
+@inject IAPIService API
 @rendermode InteractiveServer
 
 <h3>Login</h3>
@@ -41,10 +45,12 @@
     {
         try
         {
-            if (Username == "username" && Password == "password")
+            List<User> potentialUsers = await API.GetUserAsync(Username, Password);
+            if (potentialUsers.Count == 1)
             {
-                IsLoggedIn = true;
+                API.CurrentUser = potentialUsers[0];
                 ShowError = false;
+                Nav.NavigateTo("/");
             }
             else
             {

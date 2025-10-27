@@ -3,6 +3,7 @@
     public class Location
     {
         public int LocationID { get; set; }
+        public int UserID { get; set; }
         public double Latitute { get; set; }
         public double Longitute { get; set; }
 

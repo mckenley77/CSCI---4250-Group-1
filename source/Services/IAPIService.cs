@@ -8,6 +8,6 @@ namespace StudentTracker.Services
 
         Task<string> CreateUserAsync(User user);
 
-        Task<User> GetUserAsync(string username, string password);
+        Task<List<User>> GetUserAsync(string username, string password);
     }
 }
