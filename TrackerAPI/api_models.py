@@ -64,8 +64,3 @@ class LocationModel(BaseModel):
   address : str
   timestamp : datetime
   accuracy : float
-  
-class LocationHistoryModel(BaseModel):
-  id : int
-  studentid : int
-  locations : List[LocationModel]

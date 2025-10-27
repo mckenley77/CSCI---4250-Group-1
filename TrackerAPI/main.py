@@ -26,7 +26,7 @@ app = FastAPI()
 
 @app.get("/users/{username}/{password}")
 async def GetUserAsync(username : str, password : str):
-  userToLogin = session.query(User).filter(User.username == username and User.password == password).first()
+  userToLogin = session.query(User).filter(User.username == username and User.password == password).all()
   return userToLogin
 
 @app.get("/users/")
@@ -38,6 +38,7 @@ async def CreateUserAsync(user : UserModel):
   idNum = session.query(User).count()
   session.add(User(
     id=idNum,
+    user_type = user.user_type,
     username=user.username,
     password=user.password,
     firstname=user.firstname,
@@ -57,7 +58,7 @@ async def GetStudentsAsync():
   return session.query(Student).all()
 
 @app.post("/students/")
-async def CreateUserAsync(student : StudentModel):
+async def CreateStudentAsync(student : StudentModel):
   idNum = session.query(Student).count()
   session.add(Student(
     id=idNum,
@@ -84,7 +85,7 @@ async def GetInstructorsAsync():
   return session.query(Instructor).all()
 
 @app.post("/instructors/")
-async def CreateUserAsync(instructor : InstructorModel):
+async def CreateInstructorAsync(instructor : InstructorModel):
   idNum = session.query(Student).count()
   session.add(Student(
     id=idNum,
@@ -173,3 +174,4 @@ async def PostnotificationAsync(notification : NotificationModel):
   ))
   session.commit()
   return "success"
+

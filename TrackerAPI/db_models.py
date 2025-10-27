@@ -77,7 +77,7 @@ class Broadcast(Base):
   courseid = Column(Integer, ForeignKey("course.id"))
   message = Column(String)
   sentat = Column(Date)
-  recipientcoun = Column(Date)
+  recipientcount = Column(Date)
   
 class Notification(Base):
   __tablename__ = "notification"
