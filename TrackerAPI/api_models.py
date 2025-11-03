@@ -22,25 +22,24 @@ class CourseModel(BaseModel):
 class InstructorModel(UserModel):
   instructorid : int
   department : str
-  taughtcourses : List[CourseModel]
 
 class StudentModel(UserModel):
   studentid  : int
   major : str
   enrollmentdate : date
   locationsharingenabled : bool
-  enrolledcourses : List[CourseModel]
   
 class MessageModel(BaseModel):
-  messageid : int
+  id : int
   senderid : int
+  recipientid : int
   recipienttype : str
   messagecontent : str
   sentat: datetime
   isread : bool
   
 class BroadcastModel(BaseModel):
-  broadcastid : str
+  id : str
   instructorid : str
   courseid : str
   message : str
@@ -48,7 +47,7 @@ class BroadcastModel(BaseModel):
   recipientcount : int
 
 class NotificationModel(BaseModel):
-  notificationid : int
+  id : int
   userid : int
   type : str
   title : str
@@ -57,7 +56,7 @@ class NotificationModel(BaseModel):
   createdat : datetime
 
 class LocationModel(BaseModel):
-  locationid : int
+  id : int
   userid : int
   latitude : float
   longitude : float

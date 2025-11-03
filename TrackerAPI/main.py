@@ -29,6 +29,11 @@ async def GetUserAsync(username : str, password : str):
   userToLogin = session.query(User).filter(User.username == username and User.password == password).all()
   return userToLogin
 
+@app.get("/users/{userId}")
+async def GetUserById(userId : int):
+  userToLog = session.query(User).filter(User.id == userId).first()
+  return userToLog
+
 @app.get("/users/")
 async def GetUsersAsync():
   return session.query(User).all()
@@ -67,9 +72,7 @@ async def CreateStudentAsync(student : StudentModel):
     firstname=student.firstname,
     lastname=student.lastname,
     major=student.major,
-    enrollmentdate=student.enrollmentdate,
-    locationsharingenabled=student.locationsharingenabled,
-    enrollecourses=student.enrolledcourses
+    enrollmentdate=student.enrollmentdate
     ))
   session.commit()
   return "success"
@@ -93,8 +96,7 @@ async def CreateInstructorAsync(instructor : InstructorModel):
     password=instructor.password,
     firstname=instructor.firstname,
     lastname=instructor.lastname,
-    department=instructor.department,
-    taughtcourses=instructor.taughtcourses
+    department=instructor.department
     ))
   session.commit()
   return "success"
@@ -134,12 +136,22 @@ async def GetMessageAsync(id: int):
 async def GetMessagesAsync():
   return session.query(Message).all()
 
+@app.get("/messages/{senderid}/{recipientid}")
+async def GetMessagesToUserAsync(senderid: int, recipientid: int):
+  messages = session.query(Message).filter(Message.senderid == senderid and Message.recipientid == recipientid).order_by(Message.sentat).all()
+  return messages
+
+@app.get("/messages/user/{userId}")
+async def GetMessagesByUserAsync(userId: int):
+  messages = session.query(Message).filter(Message.senderid == userId or Message.recipientid == userId).order_by(Message.sentat).all()
+  return messages
 @app.post("/messages/")
 async def PostMessageAsync(message : MessageModel):
   idNum = session.query(Message).count()
   session.add(Message(
     id=idNum,
     senderid = message.senderid,
+    recipientid = message.recipientid,
     recipienttype = message.recipienttype,
     messagecontent = message.messagecontent,
     sentat = message.sentat,
@@ -157,13 +169,13 @@ async def GetNotificationAsync(id: int):
   return notificationGet
 
 @app.get("/notifications/")
-async def GetnotificationsAsync():
+async def GetNotificationsAsync():
   return session.query(Notification).all()
 
 @app.post("/notifications/")
-async def PostnotificationAsync(notification : NotificationModel):
+async def PostNotificationAsync(notification : NotificationModel):
   idNum = session.query(Notification).count()
-  session.add(notification(
+  session.add(Notification(
     id=idNum,
     userid = notification.userid,
     type = notification.type,
@@ -175,3 +187,28 @@ async def PostnotificationAsync(notification : NotificationModel):
   session.commit()
   return "success"
 
+#Location
+
+@app.get("/location/{id}/{userid}")
+async def GetLocataionAsync(id: int, userid: int):
+  locationGet = session.Query(Location).filter(Location.id == id and Location.userid == userid)
+  return locationGet
+
+@app.get("/location/")
+async def GetLocationsAsync():
+  return session.query(Location).all()
+
+@app.post("/location/")
+async def PostLocationAsync(location : LocationModel):
+  idNum  = session.query(Location).count()
+  session.add(Location(
+    id=idNum,
+    userid=location.userid,
+    latitude=location.latitude,
+    longitude=location.longitude,
+    address=location.address,
+    timestamp=location.timestamp,
+    accuracy=location.accuracy
+  ))
+  session.commit()
+  return "success"
