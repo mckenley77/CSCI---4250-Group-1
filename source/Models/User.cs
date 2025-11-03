@@ -22,7 +22,7 @@ namespace StudentTracker.Models
         /// </summary>
 
         [JsonPropertyName ("password")]
-        private string Password { get; set; }
+        public string Password { get; set; }
 
         private string UserSalt { get; set; } 
 
@@ -39,6 +39,10 @@ namespace StudentTracker.Models
         
         public bool IsActive { get; set; }
 
+        [JsonPropertyName("user_type")]
+        public string UserType { get; set; } = string.Empty;
+
+
         //public User()
         //{
         //    byte[] UserSaltBytes = new byte[16];
@@ -53,13 +57,13 @@ namespace StudentTracker.Models
 
 
         //Working on password hashing, but primitive login will be with just plaintext. 
-       // public void HashPassword(string toBeHashed, byte[] SaltBytes)
-       // {
-       //     byte[] passwordBytes = Encoding.UTF8.GetBytes(toBeHashed);
-       //     byte[] saltedPasswordBytes = new byte[passwordBytes.Length + SaltBytes.Length];
-       //
-       //     Buffer.BlockCopy(passwordBytes, 0, saltedPasswordBytes, 0, passwordBytes.Length);
-       //     Buffer.BlockCopy(SaltBytes, 0, saltedPasswordBytes, passwordBytes.Length, SaltBytes.Length);
-       // }
+        // public void HashPassword(string toBeHashed, byte[] SaltBytes)
+        // {
+        //     byte[] passwordBytes = Encoding.UTF8.GetBytes(toBeHashed);
+        //     byte[] saltedPasswordBytes = new byte[passwordBytes.Length + SaltBytes.Length];
+        //
+        //     Buffer.BlockCopy(passwordBytes, 0, saltedPasswordBytes, 0, passwordBytes.Length);
+        //     Buffer.BlockCopy(SaltBytes, 0, saltedPasswordBytes, passwordBytes.Length, SaltBytes.Length);
+        // }
     }
 }
