@@ -20,6 +20,10 @@ session = Session()
 # to run: uvicorn main:app --reload
 app = FastAPI()
 
+#functions to help
+def updateInTable(table, id : int, modelAttributes, data):
+  session.query(table).filter(table.id == id).update({modelAttributes : data})
+
 #API endpoints below
 
 #users, in progress
@@ -77,6 +81,17 @@ async def CreateStudentAsync(student : StudentModel):
   session.commit()
   return "success"
 
+
+@app.put("/students/{id}")
+async def UpdateStudentAsync(studentId: int, student: StudentModel):
+  studentAttributes = [student.id, student.username, student.password, student.firstname, student.lastname, student.major, student.enrollmentdate]
+  modelAttributes = [Student.id, Student.username, Student.password, Student.firstname, Student.lastname, Student.major, Student.enrollmentdate]
+  for i in range(7):
+    updateInTable(Student, studentId, modelAttributes[i], studentAttributes[i])
+  session.commit()
+  return "Instructor updated successfully."
+
+
 #instructor
 @app.get("/instructors/{id}")
 async def GetInstructorAsync(id : int):
@@ -100,6 +115,16 @@ async def CreateInstructorAsync(instructor : InstructorModel):
     ))
   session.commit()
   return "success"
+
+@app.put("/instructors/{id}")
+async def UpdateInstructorAsync(instructorId: int, instructor: InstructorModel):
+  instructorAttributes = [instructor.instructorid, instructor.username, instructor.password, instructor.firstname, instructor.lastname, instructor.department]
+  modelAttributes = [Instructor.instructorid, Instructor.username, Instructor.password, Instructor.firstname, Instructor.lastname, Instructor.department]
+  for i in range(6):
+    updateInTable(Instructor, instructorId, modelAttributes[i], instructorAttributes[i])
+  session.commit()
+  return "Instructor updated successfully."
+
 
 #course, in progress
 @app.get("/course/{id}")
@@ -159,8 +184,6 @@ async def PostMessageAsync(message : MessageModel):
   ))
   session.commit()
   return "success"
-
-
 
 #Notification
 @app.get("/notification/{id}")
