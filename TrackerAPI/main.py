@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.encoders import jsonable_encoder
 from api_models import UserModel, StudentModel, CourseModel, InstructorModel, MessageModel, BroadcastModel, NotificationModel, LocationModel
-from db_models import Base, User, Student, Course, Instructor, Message, Broadcast, Notification, Location
+from db_models import Base, User, Student, Course, Instructor, Message, Broadcast, Notification, Location, InstructorCourse, StudentCourse
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -56,6 +56,12 @@ async def CreateUserAsync(user : UserModel):
   session.commit()
   return "success"
 
+@app.delete('/users/{userId}')
+async def DeleteUserAsync(userId : int):
+  session.query(User).filter(User.id == userId).delete()
+  session.commit()
+  return "successfully deleted user"
+
 #student
 @app.get("/students/{id}")
 async def GetStudentAsync(id : int):
@@ -81,7 +87,6 @@ async def CreateStudentAsync(student : StudentModel):
   session.commit()
   return "success"
 
-
 @app.put("/students/{id}")
 async def UpdateStudentAsync(studentId: int, student: StudentModel):
   studentAttributes = [student.id, student.username, student.password, student.firstname, student.lastname, student.major, student.enrollmentdate]
@@ -91,6 +96,25 @@ async def UpdateStudentAsync(studentId: int, student: StudentModel):
   session.commit()
   return "Instructor updated successfully."
 
+@app.get("/students/courses/{id}")
+async def GetStudentCourses(id : int):
+  student = session.query(Student).filter(Student.id == id).first()
+  return student.enrolledcourses
+  
+@app.post("/students/courses/")
+async def AddStudentEnrollmnt(studentId : int, courseId: int):
+  session.add(StudentCourse(
+    student_id=studentId,
+    course_id=courseId
+  ))
+  session.commit()
+  return "success"
+
+@app.delete('/students/{id}')
+async def DeleteStudentAsync(id : int):
+  session.query(Student).filter(Student.id == id).delete()
+  session.commit()
+  return "successfully deleted student"
 
 #instructor
 @app.get("/instructors/{id}")
@@ -125,6 +149,26 @@ async def UpdateInstructorAsync(instructorId: int, instructor: InstructorModel):
   session.commit()
   return "Instructor updated successfully."
 
+@app.get("/instructors/courses/{id}")
+async def GetInstructorCourses(id : int):
+  instructor = session.query(Instructor).filter(Instructor.id == id).first()
+  return instructor.taughtcourses
+  
+@app.post("/instructors/courses/")
+async def AddCourseInstructor(instructorId : int, courseId: int):
+  session.add(InstructorCourse(
+    instructor_id=instructorId,
+    course_id=courseId
+  ))
+  session.commit()
+  return "success"
+  
+@app.delete('/instructors/{id}')
+async def DeleteInstructorAsync(id : int):
+  session.query(Instructor).filter(Instructor.id == id).delete()
+  session.commit()
+  return "successfully deleted instructor"
+
 
 #course, in progress
 @app.get("/course/{id}")
@@ -150,7 +194,23 @@ async def CreateCourseAsync(course : CourseModel):
   session.commit()
   return "success"
 
-#Message / Broadcast
+@app.put("/course/{id}")
+async def UpdateCourseAsync(courseId: int, course: CourseModel):
+  courseAttributes = [course.id, course.coursename, course.coursecode, course.coursedescription, course.startdate, course.enddate]
+  modelAttributes = [Course.id, Course.coursename, Course.coursecode, Course.coursedescription, Course.startdate, Course.enddate]
+  for i in range(6):
+    updateInTable(Course, courseId, modelAttributes[i], courseAttributes[i])
+  session.commit()
+  return "Course updated successfully."
+
+@app.delete('/course/{id}')
+async def DeleteCourseAsync(id : int):
+  session.query(Course).filter(Course.id == id).delete()
+  session.commit()
+  return "successfully deleted course"
+
+
+#Message 
 
 @app.get("/messages/{id}")
 async def GetMessageAsync(id: int):
@@ -170,6 +230,7 @@ async def GetMessagesToUserAsync(senderid: int, recipientid: int):
 async def GetMessagesByUserAsync(userId: int):
   messages = session.query(Message).filter(Message.senderid == userId or Message.recipientid == userId).order_by(Message.sentat).all()
   return messages
+
 @app.post("/messages/")
 async def PostMessageAsync(message : MessageModel):
   idNum = session.query(Message).count()
@@ -184,6 +245,57 @@ async def PostMessageAsync(message : MessageModel):
   ))
   session.commit()
   return "success"
+
+@app.put("/messages/{id}")
+async def UpdateMessagesAsync(msgId: int, message: MessageModel):
+  messageAttributes = [message.id, message.senderid, message.recipientid, message.recipienttype, message.messagecontent, message.sentat, message.isread]
+  modelAttributes = [Message.id, Message.senderid, Message.recipientid, Message.recipienttype, Message.messagecontent, Message.sentat, Message.isread]
+  for i in range(6):
+    updateInTable(Message, msgId, modelAttributes[i], messageAttributes[i])
+  session.commit()
+  return "Course updated successfully."
+
+@app.delete('/messages/{id}')
+async def DeleteMessageAsync(id : int):
+  session.query(Message).filter(Message.id == id).delete()
+  session.commit()
+  return "successfully deleted message"
+
+
+#Broadcast
+
+@app.get("/broadcast/{id}")
+async def GetBroadcastAsync(id: int):
+  broadcastGet = session.query(Broadcast).filter(Broadcast.id == id).first()
+  return broadcastGet
+
+@app.get("/broadcast/")
+async def GetBroadcastsAsync():
+  return session.query(Broadcast).all()
+
+@app.get("/broadcast/{courseId}")
+async def GetBroadcastByClassAsync(courseId : int):
+  courseMessages = session.query(Broadcast).filter(Broadcast.courseid == id).all()
+  return courseMessages
+
+@app.post("/broadcast/")
+async def CreateBroadcastAsync(broadcast : BroadcastModel):
+  session.add(Broadcast(
+    instuctorid = broadcast.instructorid,
+    courseid = broadcast.courseid,
+    message = broadcast.message,
+    sentat = broadcast.senat,
+    recipientcount = broadcast.recipientcount
+  ))
+  session.commit()
+  return "success"
+
+@app.delete('/broadcast/{id}')
+async def DeleteBroadcastAsync(id : int):
+  session.query(Broadcast).filter(Broadcast.id == id).delete()
+  session.commit()
+  return "successfully deleted user"
+
 
 #Notification
 @app.get("/notification/{id}")
@@ -210,6 +322,12 @@ async def PostNotificationAsync(notification : NotificationModel):
   session.commit()
   return "success"
 
+@app.delete('/notifications/{id}')
+async def DeleteNotificationAsync(id : int):
+  session.query(Notification).filter(Notification.id == id).delete()
+  session.commit()
+  return "successfully deleted notification"
+
 #Location
 
 @app.get("/location/{id}/{userid}")
@@ -235,3 +353,10 @@ async def PostLocationAsync(location : LocationModel):
   ))
   session.commit()
   return "success"
+
+
+@app.delete('/location/{id}')
+async def DeleteLocationAsync(id : int):
+  session.query(Location).filter(Location.id == id).delete()
+  session.commit()
+  return "successfully deleted location"
