@@ -1,0 +1,55 @@
+﻿@page "/messages/{UserID:int}"
+@using StudentTracker.Models
+@using StudentTracker.Services
+@inject IAPIService API
+
+
+
+
+
+@code {
+
+    [Parameter]
+    public int UserID { get; set; }
+
+    private User user;
+    private List<Message> UserMessages;
+    private bool isUserNotFound = false;
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            user = await API.GetUserByIdAsync(UserID);
+
+            if (user == null)
+            {
+                isUserNotFound = true;
+            }
+            await InvokeAsync(StateHasChanged);
+        }
+        catch(HttpRequestException ex)
+        {
+            Console.Error.WriteLine($"Error fetching user data: {ex.Message}");
+            isUserNotFound = true;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(!isUserNotFound && firstRender)
+        {
+            try
+            {
+                UserMessages = await API.GetMessagesByUserAsync(UserID);
+                await InvokeAsync(StateHasChanged);
+            }
+            catch(HttpRequestException ex)
+            {
+                Console.Error.WriteLine($"Error fetching user's messages: {ex.Message}");
+            }
+        }
+    }
+}

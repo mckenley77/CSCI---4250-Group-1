@@ -64,6 +64,7 @@ class Message(Base):
   
   id = Column(Integer, primary_key=True, autoincrement=True)
   senderid = Column(Integer, ForeignKey("user.id"))
+  recipientid = Column(Integer, ForeignKey("user.id"))
   recipienttype = Column(String)
   messagecontent = Column(String)
   sentat = Column(DateTime)
