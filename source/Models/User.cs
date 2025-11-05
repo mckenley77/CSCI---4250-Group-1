@@ -22,7 +22,7 @@ namespace StudentTracker.Models
         /// </summary>
 
         [JsonPropertyName ("password")]
-        private string Password { get; set; }
+        public string Password { get; set; }
 
         private string UserSalt { get; set; } 
 
@@ -38,6 +38,10 @@ namespace StudentTracker.Models
         private DateTime CreatedAt = DateTime.Now;
         
         public bool IsActive { get; set; }
+
+        [JsonPropertyName("user_type")]
+        public string UserType { get; set; } = string.Empty;
+
 
         //public User()
         //{

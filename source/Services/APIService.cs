@@ -29,11 +29,17 @@ namespace StudentTracker.Services
             _httpClient.BaseAddress = new Uri("http://localhost:8000/");
         }
 
+        //User endpoints
         public async Task<string> CreateUserAsync(User user)
         {
             var response = await _httpClient.PostAsJsonAsync("users/", user);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
+        }
+        public async Task<User> GetUserByIdAsync(int id)
+        {
+            var response = await _httpClient.GetFromJsonAsync<User>($"users/{id}");
+            return response;
         }
 
         public async Task<List<User>> GetUserAsync(string username, string password)
@@ -41,5 +47,79 @@ namespace StudentTracker.Services
             var response = await _httpClient.GetFromJsonAsync<List<User>>($"users/{username}/{password}");
             return response;
         }
+        public async Task<List<User>> GetUsersAsync()
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<User>>("users/");
+            return response;
+        }
+
+        //Student endpoints
+        public async Task<string> CreateStudentAsync(Student student)
+        {
+            var response = await _httpClient.PostAsJsonAsync("students/", student);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
+        }
+        public async Task<Student> GetStudentAsync(int id)
+        {
+            var response = await _httpClient.GetFromJsonAsync<Student>($"students/{id}");
+            return response;
+        }
+        public async Task<List<Student>> GetStudentsAsync()
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<Student>>("students/");
+            return response;
+        }
+
+        //Instructor endpoints
+        public async Task<string> CreateInstructorAsync(Instructor instructor)
+        {
+            var response = await _httpClient.PostAsJsonAsync("instructors/", instructor);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
+        }
+        public async Task<Instructor> GetInstructorAsync(int id)
+        {
+            var response = await _httpClient.GetFromJsonAsync<Instructor>($"instructors/{id}");
+            return response;
+        }
+        public async Task<List<Instructor>> GetInstructorAsync()
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<Instructor>>("instructors/");
+            return response;
+        }
+
+        //Messaging endpoints
+
+        public async Task<string> CreateMessageAsync(Message message)
+        {
+            var response = await _httpClient.PostAsJsonAsync("messages/", message);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
+        }
+        
+        public async Task<Message> GetMessageAsync(int id)
+        {
+            var response = await _httpClient.GetFromJsonAsync<Message>($"messages/{id}");
+            return response;
+        }
+        
+        public async Task<List<Message>> GetMessagesAsync()
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<Message>>("messages/");
+            return response;
+        }
+
+        public async Task<List<Message>> GetMessagesToUserAsync(int senderId, int recipientId)
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<Message>>($"messages/{senderId}/{recipientId}");
+            return response;
+        }
+        public async Task<List<Message>> GetMessagesByUserAsync(int userId)
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<Message>>($"messages/user/{userId}");
+            return response;
+        }
+
     }
 }
