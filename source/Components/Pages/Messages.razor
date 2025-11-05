@@ -5,7 +5,25 @@
 
 
 
+@if (!isUserNotFound)
+{
+    <h2>Messages for: @user.FirstName @user.LastName</h2>
+    @foreach(Message msg in UserMessages)
+    {
+        <div>
+            <h4>Message From: @msg.SenderName to @msg.RecipientName</h4>
+            <p>@msg.MessageContet</p>
+        </div>
+    }
 
+    <h2>Send a message to a user: </h2>
+    <div>
+        <!--Add message box here-->
+        <!--Add user select box here-->
+        <!--Add dropdown to selct RecipientType ("Student" or "Instructor")-->
+    </div>
+    <button class="btn-success">Send Message?</button>
+}
 
 @code {
 
@@ -16,6 +34,9 @@
     private List<Message> UserMessages;
     private bool isUserNotFound = false;
 
+    private string MessageText = "";
+    private int MessageRecipient;
+    private string MsgRecipientType = "Student";
 
     protected override async Task OnParametersSetAsync()
     {
@@ -50,6 +71,29 @@
             {
                 Console.Error.WriteLine($"Error fetching user's messages: {ex.Message}");
             }
+        }
+    }
+
+    public async Task SendMessageAsync()
+    {
+        try
+        {
+            Message msgToSend = new Message
+            {
+                SenderID = user.Id,
+                SenderName = user.FirstName + " " + user.LastName,
+                RecipientID = MessageRecipient,
+                RecipientType = MsgRecipientType,
+                MessageContet = MessageText,
+                SentAt = DateTime.Now,
+                IsRead = false
+            };
+            //Need to add Message Post Endpoint
+            var response = await API.CreateMessageAsync(msgToSend);
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.Error.WriteLine($"Error fetching user's messages: {ex.Message}");
         }
     }
 }

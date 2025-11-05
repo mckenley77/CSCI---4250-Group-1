@@ -237,7 +237,9 @@ async def PostMessageAsync(message : MessageModel):
   session.add(Message(
     id=idNum,
     senderid = message.senderid,
+    sendername = message.sendername,
     recipientid = message.recipientid,
+    recipientname = message.recipientname,
     recipienttype = message.recipienttype,
     messagecontent = message.messagecontent,
     sentat = message.sentat,
@@ -248,8 +250,8 @@ async def PostMessageAsync(message : MessageModel):
 
 @app.put("/messages/{id}")
 async def UpdateMessagesAsync(msgId: int, message: MessageModel):
-  messageAttributes = [message.id, message.senderid, message.recipientid, message.recipienttype, message.messagecontent, message.sentat, message.isread]
-  modelAttributes = [Message.id, Message.senderid, Message.recipientid, Message.recipienttype, Message.messagecontent, Message.sentat, Message.isread]
+  messageAttributes = [message.id, message.senderid, message.sendername, message.recipientid, message.recipientname, message.recipienttype, message.messagecontent, message.sentat, message.isread]
+  modelAttributes = [Message.id, Message.senderid, Message.sendername,Message.recipientid, Message.recipientname, Message.recipienttype, Message.messagecontent, Message.sentat, Message.isread]
   for i in range(6):
     updateInTable(Message, msgId, modelAttributes[i], messageAttributes[i])
   session.commit()
