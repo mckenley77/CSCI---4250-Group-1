@@ -1,6 +1,6 @@
 ﻿namespace StudentTracker.Models
 {
-    public class Instructor : User
+    public class Instructor : User 
     {
         public int InstructorID { get; set; }
 

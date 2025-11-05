@@ -2,27 +2,57 @@
 @using StudentTracker.Models
 @using StudentTracker.Services
 @inject IAPIService API
+@rendermode InteractiveServer
 
-
-
-@if (!isUserNotFound)
+@if (isUserNotFound)
 {
+    <p>User not found.</p>
+}
+else if (user == null)
+{
+    <p>Loading user data...</p>
+}
+else{
     <h2>Messages for: @user.FirstName @user.LastName</h2>
     @foreach(Message msg in UserMessages)
     {
         <div>
             <h4>Message From: @msg.SenderName to @msg.RecipientName</h4>
-            <p>@msg.MessageContet</p>
+            <p>@msg.MessageContent</p>
         </div>
     }
+    <button @onclick="SwitchToInstructor">Swtich from showing Students to Instructors</button>
 
     <h2>Send a message to a user: </h2>
     <div>
-        <!--Add message box here-->
-        <!--Add user select box here-->
-        <!--Add dropdown to selct RecipientType ("Student" or "Instructor")-->
+        <form @onsubmit="SendMessageAsync">
+            <div class="form-group">
+                <label asp-for="MessageRecipient" class="control-label"></label>
+                <select @bind="MessageRecipient" class="form-select">
+                    @if(!selectingInstructor)
+                    {
+
+                       @foreach (var studentSelect in Students)
+                        {
+                            <option value="@studentSelect.Id">@studentSelect.FirstName @studentSelect.LastName</option>
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var instructorSelect in Instructors)
+                        {
+                            <option value="@instructorSelect.Id">@instructorSelect.FirstName @instructorSelect.LastName</option>
+                        }
+                    }
+                </select>
+             </div>
+            <div class="mb-3">
+                <label for="msgToSend.MessageContent" class="form-label">Body:</label>
+                <textarea id="msgToSend.MessageContent" class="form-control bg-dark text-light" rows="5" @bind="msgToSend.MessageContent"></textarea>
+            </div>
+            <button type="submit" class="btn btn-dark"><img src="/images/menu_cursor.png" /> Send Message</button>
+        </form>
     </div>
-    <button class="btn-success">Send Message?</button>
 }
 
 @code {
@@ -33,16 +63,25 @@
     private User user;
     private List<Message> UserMessages;
     private bool isUserNotFound = false;
+    private List<Student> Students;
+    private List<Instructor> Instructors;
+
+    private bool selectingInstructor = false;
 
     private string MessageText = "";
     private int MessageRecipient;
     private string MsgRecipientType = "Student";
+    private Message msgToSend = new Message();
 
     protected override async Task OnParametersSetAsync()
     {
         try
         {
             user = await API.GetUserByIdAsync(UserID);
+            Students = await API.GetStudentsAsync();
+            Instructors = await API.GetInstructorsAsync();
+            UserMessages = await API.GetMessagesByUserAsync(UserID);
+
 
             if (user == null)
             {
@@ -58,38 +97,41 @@
         }
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if(!isUserNotFound && firstRender)
-        {
-            try
-            {
-                UserMessages = await API.GetMessagesByUserAsync(UserID);
-                await InvokeAsync(StateHasChanged);
-            }
-            catch(HttpRequestException ex)
-            {
-                Console.Error.WriteLine($"Error fetching user's messages: {ex.Message}");
-            }
-        }
-    }
 
-    public async Task SendMessageAsync()
+    private async Task SwitchToInstructor()
     {
+        Console.WriteLine("Switch Button"); 
+        selectingInstructor = !selectingInstructor;
+        StateHasChanged();
+    }
+    private async Task SendMessageAsync()
+    {
+        Console.WriteLine("Sending a message!");
         try
         {
-            Message msgToSend = new Message
+            if (selectingInstructor)
             {
-                SenderID = user.Id,
-                SenderName = user.FirstName + " " + user.LastName,
-                RecipientID = MessageRecipient,
-                RecipientType = MsgRecipientType,
-                MessageContet = MessageText,
-                SentAt = DateTime.Now,
-                IsRead = false
-            };
-            //Need to add Message Post Endpoint
+                MsgRecipientType = "Instructor";
+            }
+            else MsgRecipientType = "Student";
+
+            var Recipient = await API.GetUserByIdAsync(MessageRecipient);
+            string RecipientName = Recipient.FirstName+" "+Recipient.LastName;
+
+            msgToSend.ID = 0;
+            msgToSend.SenderID = user.Id;
+            msgToSend.SenderName = user.FirstName + " " + user.LastName;
+            msgToSend.RecipientID = MessageRecipient;
+            msgToSend.RecipientName = RecipientName;
+            msgToSend.RecipientType = MsgRecipientType;
+            msgToSend.SentAt = DateTime.Now;
+            msgToSend.IsRead = false;
+
+            Console.WriteLine(msgToSend.MessageContent);
+
             var response = await API.CreateMessageAsync(msgToSend);
+            Console.WriteLine(response);
+            StateHasChanged();
         }
         catch (HttpRequestException ex)
         {

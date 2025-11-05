@@ -26,7 +26,7 @@ namespace StudentTracker.Services
 
         Task<Instructor> GetInstructorAsync(int id);
 
-        Task<List<Instructor>> GetInstructorAsync();
+        Task<List<Instructor>> GetInstructorsAsync();
 
 
         //Messaging endpoints

@@ -82,7 +82,8 @@ async def CreateStudentAsync(student : StudentModel):
     firstname=student.firstname,
     lastname=student.lastname,
     major=student.major,
-    enrollmentdate=student.enrollmentdate
+    enrollmentdate=student.enrollmentdate,
+    locationsharingenabled = True
     ))
   session.commit()
   return "success"
@@ -212,7 +213,7 @@ async def DeleteCourseAsync(id : int):
 
 #Message 
 
-@app.get("/messages/{id}")
+@app.get("/messages/one/{id}")
 async def GetMessageAsync(id: int):
   messageGet = session.query(Message).filter(Message.id == id).first()
   return messageGet
@@ -226,7 +227,7 @@ async def GetMessagesToUserAsync(senderid: int, recipientid: int):
   messages = session.query(Message).filter(Message.senderid == senderid and Message.recipientid == recipientid).order_by(Message.sentat).all()
   return messages
 
-@app.get("/messages/user/{userId}")
+@app.get("/messages/{userId}")
 async def GetMessagesByUserAsync(userId: int):
   messages = session.query(Message).filter(Message.senderid == userId or Message.recipientid == userId).order_by(Message.sentat).all()
   return messages

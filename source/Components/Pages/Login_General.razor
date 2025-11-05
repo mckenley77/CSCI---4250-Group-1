@@ -50,7 +50,7 @@
             {
                 API.CurrentUser = potentialUsers[0];
                 ShowError = false;
-                Nav.NavigateTo("/");
+                Nav.NavigateTo($"/messages/{potentialUsers[0].Id}");
             }
             else
             {

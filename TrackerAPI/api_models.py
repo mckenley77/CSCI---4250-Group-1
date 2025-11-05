@@ -30,9 +30,11 @@ class StudentModel(UserModel):
   locationsharingenabled : bool
   
 class MessageModel(BaseModel):
-  id : int
+  messageid : int
   senderid : int
+  sendername : str
   recipientid : int
+  recipientname : str
   recipienttype : str
   messagecontent : str
   sentat: datetime

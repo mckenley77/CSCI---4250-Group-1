@@ -83,7 +83,7 @@ namespace StudentTracker.Services
             var response = await _httpClient.GetFromJsonAsync<Instructor>($"instructors/{id}");
             return response;
         }
-        public async Task<List<Instructor>> GetInstructorAsync()
+        public async Task<List<Instructor>> GetInstructorsAsync()
         {
             var response = await _httpClient.GetFromJsonAsync<List<Instructor>>("instructors/");
             return response;
@@ -117,7 +117,7 @@ namespace StudentTracker.Services
         }
         public async Task<List<Message>> GetMessagesByUserAsync(int userId)
         {
-            var response = await _httpClient.GetFromJsonAsync<List<Message>>($"messages/user/{userId}");
+            var response = await _httpClient.GetFromJsonAsync<List<Message>>($"messages/{userId}");
             return response;
         }
 
