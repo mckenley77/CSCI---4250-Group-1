@@ -52,14 +52,19 @@ namespace StudentTracker.Models
         //}
 
 
-        //Working on password hashing, but primitive login will be with just plaintext. 
-       // public void HashPassword(string toBeHashed, byte[] SaltBytes)
-       // {
-       //     byte[] passwordBytes = Encoding.UTF8.GetBytes(toBeHashed);
-       //     byte[] saltedPasswordBytes = new byte[passwordBytes.Length + SaltBytes.Length];
-       //
-       //     Buffer.BlockCopy(passwordBytes, 0, saltedPasswordBytes, 0, passwordBytes.Length);
-       //     Buffer.BlockCopy(SaltBytes, 0, saltedPasswordBytes, passwordBytes.Length, SaltBytes.Length);
-       // }
+        // Working on password hashing, but primitive login will be with just plaintext. 
+       public byte[] HashPassword(string toBeHashed, byte[] SaltBytes)
+       {
+           byte[] passwordBytes = Encoding.UTF8.GetBytes(toBeHashed);
+           byte[] saltedPasswordBytes = new byte[passwordBytes.Length + SaltBytes.Length];
+       
+           Buffer.BlockCopy(passwordBytes, 0, saltedPasswordBytes, 0, passwordBytes.Length);
+           Buffer.BlockCopy(SaltBytes, 0, saltedPasswordBytes, passwordBytes.Length, SaltBytes.Length);
+           
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                return sha256.ComputeHash(saltedPasswordBytes);
+            }
+       }
     }
 }
