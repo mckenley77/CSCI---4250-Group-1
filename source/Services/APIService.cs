@@ -26,7 +26,7 @@ namespace StudentTracker.Services
         public APIService()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("http://localhost:8000/");
+            _httpClient.BaseAddress = new Uri("http://127.0.0.1:8000/");
         }
 
         //User endpoints
@@ -38,6 +38,7 @@ namespace StudentTracker.Services
         }
         public async Task<User> GetUserByIdAsync(int id)
         {
+            Console.WriteLine("Pinging API for a user");
             var response = await _httpClient.GetFromJsonAsync<User>($"users/{id}");
             return response;
         }
@@ -94,6 +95,7 @@ namespace StudentTracker.Services
         public async Task<string> CreateMessageAsync(Message message)
         {
             var response = await _httpClient.PostAsJsonAsync("messages/", message);
+            Console.WriteLine(response);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
@@ -110,9 +112,9 @@ namespace StudentTracker.Services
             return response;
         }
 
-        public async Task<List<Message>> GetMessagesToUserAsync(int senderId, int recipientId)
+        public async Task<List<Message>> GetMessagesToUserAsync(int idOfSender, int idOfRecipient)
         {
-            var response = await _httpClient.GetFromJsonAsync<List<Message>>($"messages/{senderId}/{recipientId}");
+            var response = await _httpClient.GetFromJsonAsync<List<Message>>($"messages/{idOfSender}/{idOfRecipient}");
             return response;
         }
         public async Task<List<Message>> GetMessagesByUserAsync(int userId)

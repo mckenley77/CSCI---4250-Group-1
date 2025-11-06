@@ -5,46 +5,104 @@
 @inject NavigationManager Nav
 @inject IAPIService API
 @rendermode InteractiveServer
+@using System.Text.Json
 
 
 
-<h3>Create New User</h3>
+<div class="mb-3">
+    <label class="form-label">User Type</label>
+    <InputSelect class="form-select" @bind-Value="userType">
+        <option value="">Select user type</option>
+        <option value="student">Student</option>
+        <option value="instructor">Instructor</option>
+    </InputSelect>
+</div>
+@if(userType == "student")
+{
+    <h3>Create New Student</h3>
 
-<EditForm Model="@newUser" OnValidSubmit="CreateUserAsync">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+    <EditForm Model="@newStudent" OnValidSubmit="CreateStudentAsync">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-    <div class="mb-3">
-        <label class="form-label">Username</label>
-        <InputText class="form-control" @bind-Value="newUser.Username" />
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <InputText class="form-control" @bind-Value="newStudent.Username" />
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Password</label>
-        <InputText class="form-control" type="password" @bind-Value="newUser.Password" />
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <InputText class="form-control" type="password" @bind-Value="newStudent.Password" />
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">First Name</label>
-        <InputText class="form-control" @bind-Value="newUser.FirstName" />
-    </div>
+        <div class="mb-3">
+            <label class="form-label">First Name</label>
+            <InputText class="form-control" @bind-Value="newStudent.FirstName" />
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Last Name</label>
-        <InputText class="form-control" @bind-Value="newUser.LastName" />
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Last Name</label>
+            <InputText class="form-control" @bind-Value="newStudent.LastName" />
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">User Type</label>
-        <InputSelect class="form-select" @bind-Value="newUser.UserType">
-            <option value="">Select user type</option>
-            <option value="student">Student</option>
-            <option value="instructor">Instructor</option>
-        </InputSelect>
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Major</label>
+            <InputText class="form-control" @bind-Value="newStudent.Major" />
+        </div>
 
-    <button type="submit" class="btn btn-primary">Create User</button>
-</EditForm>
+        <div class="mb-3">
+            <label class="form-label">Enable Location Sharing?</label>
+            <InputSelect class="form-select" @bind-Value="newStudent.LocationSharingEnabled">
+                <option value="">Select a value</option>
+                <option value=true>Yes</option>
+                <option value=false>No</option>
+            </InputSelect>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Create Student</button>
+    </EditForm>
+}
+
+@if(userType == "instructor")
+{
+    <h3>Create New Instructor</h3>
+
+    <EditForm Model="@newInstructor" OnValidSubmit="CreateInstructorAsync">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <InputText class="form-control" @bind-Value="newInstructor.Username" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <InputText class="form-control" type="password" @bind-Value="newInstructor.Password" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">First Name</label>
+            <InputText class="form-control" @bind-Value="newInstructor.FirstName" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Last Name</label>
+            <InputText class="form-control" @bind-Value="newInstructor.LastName" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Department</label>
+            <InputText class="form-control" @bind-Value="newInstructor.Department" />
+        </div>
+   
+        <button type="submit" class="btn btn-primary">Create Instructor</button>
+    </EditForm>
+}
+
+
 
     @if (!string.IsNullOrEmpty(message))
     {
@@ -53,24 +111,38 @@
 
 
 @code {
-    private User newUser = new();
+    private Student newStudent = new();
+    private Instructor newInstructor = new();
     private bool isLoading = false;
     private string? message;
-    private string passwordInput = string.Empty; 
+    private string passwordInput = string.Empty;
+    private string department = string.Empty;
+    private string major = string.Empty;
+    private bool locSharing = false;
+    private string userType = string.Empty;
 
-    private async Task CreateUserAsync()
+    private async Task CreateStudentAsync()
     {
         try
         {
             isLoading = true;
             message = string.Empty;
+            string result;
 
-            var result = await API.CreateUserAsync(newUser);
+            Console.WriteLine("Creating Student");
+
+            newStudent.StudentID = 0;
+            newStudent.UserType = "student";
+
+            var json = JsonSerializer.Serialize(newStudent);
+            Console.WriteLine(json);
+
+            result = await API.CreateStudentAsync(newStudent);
 
             if (result.Contains("success", StringComparison.OrdinalIgnoreCase))
             {
                 message = "User created successfully!";
-                newUser = new();
+                newStudent = new();
             }
             else
             {
@@ -85,5 +157,44 @@
         {
             isLoading = false;
         }
+
     }
+    private async Task CreateInstructorAsync()
+    {
+        try
+        {
+            isLoading = true;
+            message = string.Empty;
+            string result;
+
+            Console.WriteLine("Creating Instructor");
+
+            newInstructor.InstructorID = 0;
+            newInstructor.UserType = "instructor";
+
+            var json = JsonSerializer.Serialize(newInstructor);
+            Console.WriteLine(json);
+            result = await API.CreateInstructorAsync(newInstructor);
+
+            if (result.Contains("success", StringComparison.OrdinalIgnoreCase))
+            {
+                message = "User created successfully!";
+                newInstructor = new();
+            }
+            else
+            {
+                message = $"Error: {result}";
+            }
+        }
+        catch (Exception ex)
+        {
+            message = $"Exception: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+        
+    }
+    
 }

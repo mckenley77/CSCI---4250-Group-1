@@ -14,6 +14,13 @@ namespace StudentTracker
                 .AddInteractiveServerComponents();
 
             builder.Services.AddScoped<IAPIService, APIService>();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("NewPolicy", builder =>
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
 
             var app = builder.Build();
 
@@ -26,6 +33,7 @@ namespace StudentTracker
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("NewPolicy");
 
             app.UseStaticFiles();
             app.UseAntiforgery();

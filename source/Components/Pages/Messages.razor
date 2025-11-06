@@ -1,8 +1,9 @@
-﻿@page "/messages/{UserID:int}"
+﻿@page "/messages/{UID:int}"
 @using StudentTracker.Models
 @using StudentTracker.Services
 @inject IAPIService API
 @rendermode InteractiveServer
+@using System.Text.Json
 
 @if (isUserNotFound)
 {
@@ -58,13 +59,13 @@ else{
 @code {
 
     [Parameter]
-    public int UserID { get; set; }
+    public int UID { get; set; }
 
     private User user;
-    private List<Message> UserMessages;
+    public List<Message> UserMessages = new();
     private bool isUserNotFound = false;
-    private List<Student> Students;
-    private List<Instructor> Instructors;
+    public List<Student> Students = new();
+    public List<Instructor> Instructors = new();
 
     private bool selectingInstructor = false;
 
@@ -75,13 +76,13 @@ else{
 
     protected override async Task OnParametersSetAsync()
     {
+        Console.WriteLine("Parameters Set");
         try
         {
-            user = await API.GetUserByIdAsync(UserID);
+            user = await API.GetUserByIdAsync(UID);
             Students = await API.GetStudentsAsync();
             Instructors = await API.GetInstructorsAsync();
-            UserMessages = await API.GetMessagesByUserAsync(UserID);
-
+            UserMessages = await API.GetMessagesByUserAsync(UID);
 
             if (user == null)
             {
@@ -96,7 +97,13 @@ else{
             await InvokeAsync(StateHasChanged);
         }
     }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
 
+
+        StateHasChanged();
+
+    }
 
     private async Task SwitchToInstructor()
     {
@@ -111,26 +118,24 @@ else{
         {
             if (selectingInstructor)
             {
-                MsgRecipientType = "Instructor";
+                MsgRecipientType = "instructor";
             }
-            else MsgRecipientType = "Student";
+            else MsgRecipientType = "student";
 
             var Recipient = await API.GetUserByIdAsync(MessageRecipient);
             string RecipientName = Recipient.FirstName+" "+Recipient.LastName;
 
-            msgToSend.ID = 0;
+            msgToSend.MessageID = 0;
             msgToSend.SenderID = user.Id;
             msgToSend.SenderName = user.FirstName + " " + user.LastName;
             msgToSend.RecipientID = MessageRecipient;
             msgToSend.RecipientName = RecipientName;
             msgToSend.RecipientType = MsgRecipientType;
-            msgToSend.SentAt = DateTime.Now;
             msgToSend.IsRead = false;
 
-            Console.WriteLine(msgToSend.MessageContent);
 
             var response = await API.CreateMessageAsync(msgToSend);
-            Console.WriteLine(response);
+            MessageText = string.Empty;
             StateHasChanged();
         }
         catch (HttpRequestException ex)

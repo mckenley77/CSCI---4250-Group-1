@@ -32,16 +32,17 @@ namespace StudentTracker.Models
         [JsonPropertyName("lastname")]
         public string LastName { get; set; }
 
+        [JsonIgnore]
         public string Email { get; set; }
         private string PhoneNum { get; set; }
 
         private DateTime CreatedAt = DateTime.Now;
-        
+
+        [JsonIgnore]
         public bool IsActive { get; set; }
 
         [JsonPropertyName("user_type")]
-        public string UserType { get; set; } = string.Empty;
-
+        public string UserType { get; set; }
 
         //public User()
         //{
