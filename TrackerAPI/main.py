@@ -4,6 +4,7 @@ from api_models import UserModel, StudentModel, CourseModel, InstructorModel, Me
 from db_models import Base, User, Student, Course, Instructor, Message, Broadcast, Notification, Location, InstructorCourse, StudentCourse
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from datetime import datetime
 
 
 #Set up our local DB session
@@ -24,6 +25,13 @@ app = FastAPI()
 def updateInTable(table, id : int, modelAttributes, data):
   session.query(table).filter(table.id == id).update({modelAttributes : data})
 
+#student1 = Student(id=0, username="one", password="one", firstname="Student", lastname="One", major="No Major", enrollmentdate=datetime.now(), locationsharingenabled=True)
+#student2 = Student(id=1, username="two", password="two", firstname="Student", lastname="Two", major="No Major", enrollmentdate=datetime.now(), locationsharingenabled=True)
+#message1 = Message(id=0, senderId=0, sendername="Student One", recipientid=1, recipientname="Student Two", recipienttype="Student", messagecontent="Test Message", isread=False)
+#session.add(student1)
+#session.add(student2)
+#session.add(message1)
+#session.commit()
 #API endpoints below
 
 #users, in progress
@@ -74,7 +82,7 @@ async def GetStudentsAsync():
 
 @app.post("/students/")
 async def CreateStudentAsync(student : StudentModel):
-  idNum = session.query(Student).count()
+  idNum = session.query(User).count()
   session.add(Student(
     id=idNum,
     username=student.username,
@@ -82,7 +90,7 @@ async def CreateStudentAsync(student : StudentModel):
     firstname=student.firstname,
     lastname=student.lastname,
     major=student.major,
-    enrollmentdate=student.enrollmentdate
+    locationsharingenabled = True
     ))
   session.commit()
   return "success"
@@ -128,8 +136,8 @@ async def GetInstructorsAsync():
 
 @app.post("/instructors/")
 async def CreateInstructorAsync(instructor : InstructorModel):
-  idNum = session.query(Student).count()
-  session.add(Student(
+  idNum = session.query(User).count()
+  session.add(Instructor(
     id=idNum,
     username=instructor.username,
     password=instructor.password,
@@ -212,7 +220,7 @@ async def DeleteCourseAsync(id : int):
 
 #Message 
 
-@app.get("/messages/{id}")
+@app.get("/messages/one/{id}")
 async def GetMessageAsync(id: int):
   messageGet = session.query(Message).filter(Message.id == id).first()
   return messageGet
@@ -221,14 +229,14 @@ async def GetMessageAsync(id: int):
 async def GetMessagesAsync():
   return session.query(Message).all()
 
-@app.get("/messages/{senderid}/{recipientid}")
-async def GetMessagesToUserAsync(senderid: int, recipientid: int):
-  messages = session.query(Message).filter(Message.senderid == senderid and Message.recipientid == recipientid).order_by(Message.sentat).all()
+@app.get("/messages/{senderId}/{recipientid}")
+async def GetMessagesToUserAsync(senderId: int, recipientid: int):
+  messages = session.query(Message).filter(Message.senderId == senderId and Message.recipientid == recipientid).all()
   return messages
 
-@app.get("/messages/user/{userId}")
+@app.get("/messages/{userId}")
 async def GetMessagesByUserAsync(userId: int):
-  messages = session.query(Message).filter(Message.senderid == userId or Message.recipientid == userId).order_by(Message.sentat).all()
+  messages = session.query(Message).filter(Message.senderId == userId or Message.recipientid == userId).all()
   return messages
 
 @app.post("/messages/")
@@ -236,13 +244,12 @@ async def PostMessageAsync(message : MessageModel):
   idNum = session.query(Message).count()
   session.add(Message(
     id=idNum,
-    senderid = message.senderid,
+    senderId = message.senderId,
     sendername = message.sendername,
     recipientid = message.recipientid,
     recipientname = message.recipientname,
     recipienttype = message.recipienttype,
     messagecontent = message.messagecontent,
-    sentat = message.sentat,
     isread = message.isread
   ))
   session.commit()
@@ -250,8 +257,8 @@ async def PostMessageAsync(message : MessageModel):
 
 @app.put("/messages/{id}")
 async def UpdateMessagesAsync(msgId: int, message: MessageModel):
-  messageAttributes = [message.id, message.senderid, message.sendername, message.recipientid, message.recipientname, message.recipienttype, message.messagecontent, message.sentat, message.isread]
-  modelAttributes = [Message.id, Message.senderid, Message.sendername,Message.recipientid, Message.recipientname, Message.recipienttype, Message.messagecontent, Message.sentat, Message.isread]
+  messageAttributes = [message.id, message.senderId, message.sendername, message.recipientid, message.recipientname, message.recipienttype, message.messagecontent, message.isread]
+  modelAttributes = [Message.id, Message.senderId, Message.sendername,Message.recipientid, Message.recipientname, Message.recipienttype, Message.messagecontent, Message.isread]
   for i in range(6):
     updateInTable(Message, msgId, modelAttributes[i], messageAttributes[i])
   session.commit()

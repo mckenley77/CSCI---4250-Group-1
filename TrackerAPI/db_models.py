@@ -48,28 +48,24 @@ class Student(User):
   major = Column(String)
   enrollmentdate = Column(Date)
   locationsharingenabled = Column(Boolean)
-  enrolledcourses: Mapped[List[StudentCourse]] = relationship()
   
-
 class Instructor(User):
   __tablename__="instructor"
   __mapper_args__ = {'polymorphic_identity': 'instructor'}
   
   id: Mapped[int] = mapped_column(ForeignKey("user.id"), primary_key=True, autoincrement=True, use_existing_column=True)
   department = Column(String)
-  taughtcourses: Mapped[List[InstructorCourse]] = relationship()
 
 class Message(Base):
   __tablename__="message"
   
   id = Column(Integer, primary_key=True, autoincrement=True)
-  senderid = Column(Integer, ForeignKey("user.id"))
+  senderId = Column(Integer, ForeignKey("user.id"))
   sendername = Column(String)
   recipientid = Column(Integer, ForeignKey("user.id"))
   recipientname = Column(String)
   recipienttype = Column(String)
   messagecontent = Column(String)
-  sentat = Column(DateTime)
   isread = Column(Boolean)
   
 class Broadcast(Base):

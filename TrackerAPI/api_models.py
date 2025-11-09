@@ -26,16 +26,16 @@ class InstructorModel(UserModel):
 class StudentModel(UserModel):
   studentid  : int
   major : str
-  enrollmentdate : date
   locationsharingenabled : bool
   
 class MessageModel(BaseModel):
-  id : int
-  senderid : int
+  messageid : int
+  senderId : int
+  sendername : str
   recipientid : int
+  recipientname : str
   recipienttype : str
   messagecontent : str
-  sentat: datetime
   isread : bool
   
 class BroadcastModel(BaseModel):
