@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Date, DateTime, Float
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Date, DateTime, Float, Double
 from typing import List
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
@@ -94,11 +94,11 @@ class Location(Base):
 
   id = Column(Integer, primary_key=True, autoincrement=True)
   userid = Column(Integer, ForeignKey("user.id"))
-  latitude = Column(Float)
-  longitude = Column(Float)
+  latitude = Column(Double)
+  longitude = Column(Double)
   address = Column(String)
   timestamp = Column(DateTime)
-  accuracy = Column(Float)
+  accuracy = Column(Double)
   
 
 

@@ -44,5 +44,6 @@ namespace StudentTracker.Services
 
         Task<List<Message>> GetMessagesByUserAsync(int userId);
         
+        Task<string> CreateLocationAsync(Location location);
     }
 }

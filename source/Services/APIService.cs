@@ -123,6 +123,14 @@ namespace StudentTracker.Services
             var response = await _httpClient.GetFromJsonAsync<List<Message>>($"messages/{userId}");
             return response;
         }
+        public async Task<string> CreateLocationAsync(Location location)
+        {
+            var response = await _httpClient.PostAsJsonAsync("location/", location);
+            Console.WriteLine(response);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
+        }
+
 
     }
 }

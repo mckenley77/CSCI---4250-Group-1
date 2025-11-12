@@ -1,14 +1,28 @@
-﻿namespace StudentTracker.Models
+﻿using System.Text.Json.Serialization;
+
+namespace StudentTracker.Models
 {
     public class Location
     {
-        public int LocationID { get; set; }
-        public int UserID { get; set; }
-        public double Latitute { get; set; }
-        public double Longitute { get; set; }
+        [JsonPropertyName("id")]
+        public int LocationID { get; set; } = 0;
 
-        public string Address { get; set; }
-        public DateTime Timestamp { get; set; }
-        public float Accuracy { get; set; }
+        [JsonPropertyName("userid")]
+        public int UserID { get; set; } = 0;
+
+        [JsonPropertyName("latitude")]
+        public double Latitude { get; set; }
+
+        [JsonPropertyName("longitude")]
+        public double Longitude { get; set; }
+
+        [JsonPropertyName("address")]
+        public string Address { get; set; } = "";
+
+        [JsonPropertyName("timestamp")]
+        public DateTime Timestamp { get; set; } = DateTime.Now;
+
+        [JsonPropertyName("accuracy")]
+        public double Accuracy { get; set; }
     }
 }

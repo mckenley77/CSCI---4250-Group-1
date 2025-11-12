@@ -1,9 +1,12 @@
 ﻿@inject IJSRuntime JSRuntime
+@inject IAPIService API
 @using System.Text.Json
-@page "/"
-@rendermode InteractiveServer
+@using StudentTracker.Models
+@using StudentTracker.Services
 @using GoogleMapsComponents
 @using GoogleMapsComponents.Maps
+@page "/"
+@rendermode InteractiveServer
 
 
 
@@ -60,6 +63,15 @@
         console.log(mapOptions);
       });
     };
+    
+    window.getCoords = async () => {
+    const pos = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+        console.log(pos.coords.latitude);
+        console.log(pos.coords.longitude);
+        return [pos.coords.latitude, pos.coords.longitude, pos.coords.accuracy];
+    };
 
 
 </script>
@@ -68,6 +80,10 @@
     private bool ClockedIn = false;
     private bool ClockedOut = false;
     private DateTime TimeUpdate;
+    private double Latitude;
+    private double Longitude;
+    private double Accuracy;
+    private StudentTracker.Models.Location UserLocation = new StudentTracker.Models.Location();
 
     public async void ClockIn()
     {
@@ -76,6 +92,12 @@
         ClockedIn = true;
         ClockedOut = false;
         TimeUpdate = DateTime.Now;
+        var response = await JSRuntime.InvokeAsync<List<double>>("getCoords");
+        Console.WriteLine($"Lat: {response[0]}, long: {response[1]}"); 
+        Latitude = response[0];
+        Longitude = response[1];
+        Accuracy = response[2];
+        StoreLocation();
         StateHasChanged();
     }
 
@@ -87,7 +109,34 @@
         ClockedIn = false;
         ClockedOut = true;
         TimeUpdate = DateTime.Now;
-        StateHasChanged();
+        var response = await JSRuntime.InvokeAsync<List<double>>("getCoords");
+        Console.WriteLine($"Lat: {response[0]}, long: {response[1]}");
+        Latitude = response[0];
+        Longitude = response[1];
+        Accuracy = response[2];
+
+    StateHasChanged();
+    }
+
+    public async void StoreLocation()
+    {
+        UserLocation.Latitude = Latitude;
+        UserLocation.Longitude = Longitude;
+        UserLocation.Accuracy = Accuracy;
+        UserLocation.Timestamp = DateTime.Now;
+
+        var json = JsonSerializer.Serialize(UserLocation);
+        Console.WriteLine(json);
+        string result;
+
+        try
+        {
+            result = await API.CreateLocationAsync(UserLocation);
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine($"An exception occurred: {ex.Message}");
+        }
     }
 
 }
