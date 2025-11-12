@@ -1,3 +1,4 @@
+using GoogleMapsComponents;
 using StudentTracker.Components;
 using StudentTracker.Services;
 
@@ -21,6 +22,8 @@ namespace StudentTracker
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
+
+            builder.Services.AddBlazorGoogleMaps("AIzaSyBMnE0ZFjfsbW0ujvXgAhCbLULIPBKtuZM");
 
             var app = builder.Build();
 

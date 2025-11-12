@@ -76,6 +76,7 @@ else{
 
     protected override async Task OnParametersSetAsync()
     {
+
         Console.WriteLine("Parameters Set");
         try
         {
@@ -96,13 +97,6 @@ else{
             isUserNotFound = true;
             await InvokeAsync(StateHasChanged);
         }
-    }
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-
-
-        StateHasChanged();
-
     }
 
     private async Task SwitchToInstructor()
@@ -137,6 +131,7 @@ else{
             var response = await API.CreateMessageAsync(msgToSend);
             MessageText = string.Empty;
             StateHasChanged();
+            
         }
         catch (HttpRequestException ex)
         {

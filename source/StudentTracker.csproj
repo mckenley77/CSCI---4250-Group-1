@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="BlazorGoogleMaps" Version="4.13.7" />
+  </ItemGroup>
+
 </Project>

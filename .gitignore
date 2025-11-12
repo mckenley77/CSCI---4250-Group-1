@@ -4,3 +4,4 @@ obj/
 *.db
 TrackerAPI/*.db
 *.pyc
+.env
