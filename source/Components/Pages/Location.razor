@@ -7,25 +7,27 @@
 
 
 
-@if(!ClockedIn & !ClockedOut)
-{
-    <button btn="button-success" @onclick="ClockIn">Clock In</button>
-}
-@if (ClockedIn)
-{
-    <h3>Clocked in at:  @TimeUpdate</h3>
+<div class="clock-container">
+    @if (!ClockedIn && !ClockedOut)
+    {
+        <button class="clock-button btn btn-success" @onclick="ClockIn">Clock In</button>
+    }
+    else if (ClockedIn)
+    {
+        <div class="top-left">
+            <button class="btn btn-danger clockout-btn" @onclick="ClockOut">Clock Out</button>
+        </div>
+        <h3 class="clock-time">Clocked in at: @TimeUpdate</h3>
+    }
+    else if (ClockedOut)
+    {
+        <button class="clock-button btn btn-success" @onclick="ClockIn">Clock Back In</button>
+        <h3 class="clock-time">Clocked out at: @TimeUpdate</h3>
+    }
+</div>
 
-    <button btn="button-success" @onclick="ClockOut">Clock Out</button>
-}
+<div id="map" style="height:75%; width:75%; position:absolute; bottom:0; right:0; z-index:0;"></div>
 
-@if (ClockedOut)
-{
-    <h3>Clocked out at: @TimeUpdate</h3>
-
-    <button btn="button-success" @onclick="ClockIn">Clock Back In</button>
-}
-
-<div id="map" style="height:75%; width:75%; position:absolute;"></div>
 
 
 
@@ -91,3 +93,5 @@
     }
 
 }
+
+
