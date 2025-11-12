@@ -23,7 +23,6 @@ namespace StudentTracker
                     .AllowAnyHeader());
             });
 
-            builder.Services.AddBlazorGoogleMaps("AIzaSyBMnE0ZFjfsbW0ujvXgAhCbLULIPBKtuZM");
 
             var app = builder.Build();
 
