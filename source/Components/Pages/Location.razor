@@ -1,27 +1,31 @@
 ﻿@inject IJSRuntime JSRuntime
 @using System.Text.Json
-@page "/location"
+@page "/"
 @rendermode InteractiveServer
 @using GoogleMapsComponents
 @using GoogleMapsComponents.Maps
 
 
-<h3>Location</h3>
+
 @if(!ClockedIn & !ClockedOut)
 {
     <button btn="button-success" @onclick="ClockIn">Clock In</button>
 }
 @if (ClockedIn)
 {
+    <h3>Clocked in at:  @TimeUpdate</h3>
+
     <button btn="button-success" @onclick="ClockOut">Clock Out</button>
 }
 
 @if (ClockedOut)
 {
+    <h3>Clocked out at: @TimeUpdate</h3>
+
     <button btn="button-success" @onclick="ClockIn">Clock Back In</button>
 }
 
-<div id="map" style="height:100%; width:100%; position:absolute;"></div>
+<div id="map" style="height:75%; width:75%; position:absolute;"></div>
 
 
 
@@ -63,6 +67,7 @@
 @code {
     private bool ClockedIn = false;
     private bool ClockedOut = false;
+    private DateTime TimeUpdate;
 
     public async void ClockIn()
     {
@@ -70,6 +75,7 @@
         Console.WriteLine("Map Update: Clock In");
         ClockedIn = true;
         ClockedOut = false;
+        TimeUpdate = DateTime.Now;
         StateHasChanged();
     }
 
@@ -80,7 +86,7 @@
         Console.WriteLine("Map Update: Clock Out");
         ClockedIn = false;
         ClockedOut = true;
-        
+        TimeUpdate = DateTime.Now;
         StateHasChanged();
     }
 
