@@ -3,14 +3,12 @@ Created by Alex Cantrall, Solomon McKenley, Connor Cole, Nathanael Wolfe, and Ch
 
 # Features
 	- Allow students to clock in and clock out to track their time
+	- Bind location on clock in, and display it with a pin on the map 
   	- Instructor -> Student and Student -> Instructor messaging
   Note: To check your messages, you have to go to the login screen first. 
+
 # IN PROGRESS
-- Student clock in / clock out functionality
-- Location tracking (need to do ASAP)
+	- Cleaning up UI, making it more user friendly + look better.
 
 # FINISHED
-- Database 
-- API
-- Messaging
-- Login
+	- All major functionality
