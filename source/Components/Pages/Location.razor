@@ -5,10 +5,13 @@
 @using StudentTracker.Services
 @using GoogleMapsComponents
 @using GoogleMapsComponents.Maps
-@page "/"
+@page "/location"
 @rendermode InteractiveServer
 
-
+@if(API.CurrentUser != null)
+{
+    <h3>Currently logged in as: @API.CurrentUser.FirstName @API.CurrentUser.LastName</h3>
+}
 
 <div class="clock-container">
     @if (!ClockedIn && !ClockedOut)
@@ -117,11 +120,20 @@
         Longitude = response[1];
         Accuracy = response[2];
 
-    StateHasChanged();
+        StateHasChanged();
     }
 
     public async void StoreLocation()
     {
+        if(API.CurrentUser != null)
+        {
+            UserLocation.UserID = API.CurrentUser.Id;
+        }
+        else
+        {
+            UserLocation.UserID = 0;
+        }
+
         UserLocation.Latitude = Latitude;
         UserLocation.Longitude = Longitude;
         UserLocation.Accuracy = Accuracy;

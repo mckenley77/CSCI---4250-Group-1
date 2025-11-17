@@ -1,4 +1,4 @@
-﻿@page "/login"
+﻿@page "/"
 @using Microsoft.AspNetCore.Components.Web
 @using StudentTracker.Services
 @using StudentTracker.Models
@@ -54,8 +54,9 @@
             if (potentialUsers.Count == 1)
             {
                 API.CurrentUser = potentialUsers[0];
+                Username = API.CurrentUser.Username;
                 ShowError = false;
-                Nav.NavigateTo($"/messages/{potentialUsers[0].Id}");
+                IsLoggedIn = true;
             }
             else
             {
@@ -69,6 +70,7 @@
         {
             ShowError = true;
         }
+        StateHasChanged();
     }
 
     private async Task LogoutClicked()
@@ -78,6 +80,7 @@
         Username = string.Empty;
         Password = string.Empty;
         ShowError = false;
+        API.CurrentUser = null;
 
         await Task.CompletedTask;
     }

@@ -1,4 +1,4 @@
-﻿@page "/messages/{UID:int}"
+﻿@page "/messages/"
 @using StudentTracker.Models
 @using StudentTracker.Services
 @inject IAPIService API
@@ -12,6 +12,10 @@
 else if (user == null)
 {
     <p>Loading user data...</p>
+}
+else if (API.CurrentUser == null)
+{
+    <p>Please log in first!</p>
 }
 else{
     <h2>Messages for: @user.FirstName @user.LastName</h2>
@@ -58,10 +62,8 @@ else{
 
 @code {
 
-    [Parameter]
-    public int UID { get; set; }
 
-    private User user;
+    private StudentTracker.Models.User user = new();
     public List<Message> UserMessages = new();
     private bool isUserNotFound = false;
     public List<Student> Students = new();
@@ -80,10 +82,10 @@ else{
         Console.WriteLine("Parameters Set");
         try
         {
-            user = await API.GetUserByIdAsync(UID);
+            user = API.CurrentUser;
             Students = await API.GetStudentsAsync();
             Instructors = await API.GetInstructorsAsync();
-            UserMessages = await API.GetMessagesByUserAsync(UID);
+            UserMessages = await API.GetMessagesByUserAsync(user.Id);
 
             if (user == null)
             {
@@ -96,6 +98,19 @@ else{
             Console.Error.WriteLine($"Error fetching user data: {ex.Message}");
             isUserNotFound = true;
             await InvokeAsync(StateHasChanged);
+        }
+        catch(Exception ex)
+        {
+            Console.Error.WriteLine($"Another error occurred: {ex.Message}");
+            isUserNotFound = true;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            user = API.CurrentUser;
         }
     }
 
@@ -129,7 +144,7 @@ else{
 
 
             var response = await API.CreateMessageAsync(msgToSend);
-            MessageText = string.Empty;
+            MessageText = "";
             StateHasChanged();
             
         }
