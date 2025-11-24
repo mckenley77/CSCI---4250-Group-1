@@ -30,8 +30,8 @@
         <button class="clock-button btn btn-success" @onclick="ClockIn">Clock Back In</button>
         <h3 class="clock-time">Clocked out at: @TimeUpdate</h3>
     }
-</div>
 
+</div>
 <div id="map" style="height:75%; width:75%; position:absolute; bottom:0; right:0; z-index:0;"></div>
 
 
@@ -97,7 +97,9 @@
         ClockedIn = true;
         ClockedOut = false;
         TimeUpdate = DateTime.Now;
+        
         var response = await JSRuntime.InvokeAsync<List<double>>("getCoords");
+
         Console.WriteLine($"Lat: {response[0]}, long: {response[1]}"); 
         Latitude = response[0];
         Longitude = response[1];

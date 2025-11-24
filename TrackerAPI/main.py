@@ -25,6 +25,7 @@ app = FastAPI()
 def updateInTable(table, id : int, modelAttributes, data):
   session.query(table).filter(table.id == id).update({modelAttributes : data})
 
+
 #student1 = Student(id=0, username="one", password="one", firstname="Student", lastname="One", major="No Major", enrollmentdate=datetime.now(), locationsharingenabled=True)
 #student2 = Student(id=1, username="two", password="two", firstname="Student", lastname="Two", major="No Major", enrollmentdate=datetime.now(), locationsharingenabled=True)
 #message1 = Message(id=0, senderId=0, sendername="Student One", recipientid=1, recipientname="Student Two", recipienttype="Student", messagecontent="Test Message", isread=False)
@@ -32,6 +33,7 @@ def updateInTable(table, id : int, modelAttributes, data):
 #session.add(student2)
 #session.add(message1)
 #session.commit()
+
 #API endpoints below
 
 #users, in progress
