@@ -13,6 +13,12 @@ To create a web application that allows students to accurately track their work 
   	- Instructor -> Student and Student -> Instructor messaging
   Note: To check your messages, you have to go to the login screen first. 
 
+# Technologies Used
+	- Blazor Server
+	- SQLite
+	- Google Maps API
+	- FastAPI
+
 # IN PROGRESS
 	- Cleaning up UI, making it more user friendly + look better.
 
