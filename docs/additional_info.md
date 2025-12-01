@@ -1,3 +1,3 @@
 # Additional Information
 - Again, when adding more things from the API into the blazor app, wrap the class properties with JsonPropertyName to be sure that it'll communicate with the API well.
-- 
+- Some API endpoints are missing in the Blazor app - this is on purpose, as not all endpoints created in the backend needed to be in the frontend. Gives some room for expansion and change later if necessary. 
