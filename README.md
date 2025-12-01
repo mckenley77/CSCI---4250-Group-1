@@ -19,8 +19,3 @@ To create a web application that allows students to accurately track their work 
 	- Google Maps API
 	- FastAPI
 
-# IN PROGRESS
-	- Cleaning up UI, making it more user friendly + look better.
-
-# FINISHED
-	- All major functionality
